@@ -1,6 +1,9 @@
 CC=gcc
-OPTIONS=-Wall
-LIB=-lglut -lGL -lGLU
+LIB=-lglut -lGL -lGLU -lm
+OBJETS=utilitaire.o
 
-game: environnement.c
-	$(CC) -o game environnement.c $(LIB) 
+game: monde_snake.c
+	$(CC) -o game monde_snake.c $(OBJETS) $(LIB)
+	
+utilitaire.o: utilitaire.c utilitaire.h
+

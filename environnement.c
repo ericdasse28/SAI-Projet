@@ -2,8 +2,14 @@
  * Auteur : Eric DASSE
  */
 #include <stdio.h>
+#include <math.h>
 #include "GL/gl.h"
 #include "GL/glut.h"
+
+#include "env.h"
+
+vitesse v;
+point M = {0,0,0};
 
 void display();
 void Animer();
@@ -13,7 +19,7 @@ void clavier ( unsigned char touche, int x, int y );
 float z0 = 0, x0 = 0, Y = 0;
 float angle = 0, angle_droite = 0, angle_gauche = 0;
 
-/*
+
 void specialPress(int key, int mouseX, int mouseY) {
 	
 	if (key == GLUT_KEY_UP) {
@@ -25,15 +31,15 @@ void specialPress(int key, int mouseX, int mouseY) {
 	}
 	
 	if (key == GLUT_KEY_RIGHT) {
-		glTranslatef(++x0, --Y, 0);
+		glTranslatef(++x0, Y, 0);
 	}
 	
 	if (key == GLUT_KEY_LEFT) {
-		glTranslatef(--x0, ++Y, 0);
+		glTranslatef(--x0, Y, 0);
 	}
 
 }
-*/
+
 
 int main (int argc, char* argv[]) {
 	
@@ -130,12 +136,16 @@ void display() {
   glMatrixMode(GL_PROJECTION);
      glLoadIdentity();   
   int eyex, eyey, eyez, cx, cy, cz, upx, upy, upz;
-  eyex=30;
-  eyey=20;
-  eyez=15;
+  v.norme = 100;
+	v.angle = 0.52;
+  
   cx = cy = cz = 0;
   upx = upy = 0;
   upz=1;
+  eyex= /*M.x - cos(v.angle) + 2 * upx;*/-30;
+  eyey= /*M.y - sin(v.angle) + 2 * upy;*/-20;
+  eyez= /*2 * upz;*/15;
+  
   int left,right, bottom, top, near, far;
   right=top=1;
   left=bottom=-1;
@@ -148,9 +158,12 @@ void display() {
 	glTranslatef(x0,Y,z0);
 	//glRotatef(angle,0,0,1);
 	 
+	 
 	lines(150);
-	mobile_test();
+	//mobile_test();
+	affiche_vitesse(v);
 	axes();
+	glutSolidCube(4);
 	
 	glutSwapBuffers();
 }
