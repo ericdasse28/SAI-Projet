@@ -13,6 +13,7 @@ void clavier ( unsigned char touche, int x, int y );
 float z0 = 0, x0 = 0, Y = 0;
 float angle = 0, angle_droite = 0, angle_gauche = 0;
 
+/*
 void specialPress(int key, int mouseX, int mouseY) {
 	
 	if (key == GLUT_KEY_UP) {
@@ -32,6 +33,7 @@ void specialPress(int key, int mouseX, int mouseY) {
 	}
 
 }
+*/
 
 int main (int argc, char* argv[]) {
 	
@@ -147,6 +149,7 @@ void display() {
 	//glRotatef(angle,0,0,1);
 	 
 	lines(150);
+	mobile_test();
 	axes();
 	
 	glutSwapBuffers();
@@ -173,4 +176,59 @@ void clavier ( unsigned char touche, int x, int y ) {
 		
 	}
 }	
+	
+
+void mobile_test() {
+	
+	glBegin(GL_QUADS);
+
+		//bas de la maison gris clair
+		glColor3f(0.9,0.9,0.9);
+		glVertex3i(-1,0,1);
+		glVertex3i(1,0,1);
+		glVertex3i(1,0,-1);
+		glVertex3i(-1,0,-1);
+	
+		//face de gauche verteaaa
+		glColor3f(0.1,0.9,0.1);
+		glVertex3f(-1,0,1);
+		glVertex3f(-1,0,-1);
+		glVertex3f(-1,2,-1);
+		glVertex3f(-1,2,1);
+	
+		//face arriere gris fonce
+		glColor3f(0.9,0.9,0.9);
+		glVertex3f(-1,0,-1);
+		glVertex3f(1,0,-1);
+		glVertex3f(1,2,-1);
+		glVertex3f(-1,2,-1);
+	
+		//face gris fonce
+		glColor3f(0.9,0.9,0.9);
+		glVertex3i(-1,0,1);
+		glVertex3i(1,0,1);
+		glVertex3i(1,2,1);
+		glVertex3i(-1,2,1);
+	
+		//face de droite verte
+		glColor3f(0.1,0.9,0.1);
+		glVertex3f(1,0,1);
+		glVertex3f(1,0,-1);
+		glVertex3f(1,2,-1);
+		glVertex3f(1,2,1);
+	
+		//face du dessus bleu fonce
+		glColor3f(0.1,0,0.9);
+		glVertex3f(-1,2,1);
+		glVertex3f(-1,2,-1);
+		glVertex3f(1,2,-1);
+		glVertex3f(1,2,1);
+	
+	glEnd();
+
+}
+	
+	
+	
+	
 		
